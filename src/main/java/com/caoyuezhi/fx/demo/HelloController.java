@@ -1,4 +1,4 @@
-package com.caoyuezhi.fx.demo1;
+package com.caoyuezhi.fx.demo;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

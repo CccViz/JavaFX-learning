@@ -1,4 +1,4 @@
-package com.caoyuezhi.fx.demo1;
+package com.caoyuezhi.fx.demo;
 
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyDoubleProperty;
