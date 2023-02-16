@@ -1,4 +1,4 @@
-package com.caoyuezhi.fx.demo.group;
+package com.caoyuezhi.fx.demo.layout.group;
 
 import javafx.application.Application;
 import javafx.scene.Group;

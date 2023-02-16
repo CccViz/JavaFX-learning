@@ -33,7 +33,7 @@ public class DemoApplication extends Application {
 
         stage.setHeight(600);
         stage.setWidth(800);
-        stage.setResizable(true);  // 窗口大小拉伸
+        stage.setResizable(true);  // 窗口拉伸
         stage.setMinHeight(300);
         stage.setMinWidth(400);
 
