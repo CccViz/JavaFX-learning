@@ -6,9 +6,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -46,7 +46,6 @@ public class PaneDemo_2 extends Application {
 
         HBox hBox = new HBox();
 //        hBox.setPadding(new Insets(10.));
-        hBox.setSpacing(5.);
         hBox.setPadding(new Insets(30, 20, -1, 20));
         hBox.setStyle(
                 RegionCssContanst.BACKGROUND_COLOR.setValue("#c0c0c0").toStr()
@@ -59,23 +58,46 @@ public class PaneDemo_2 extends Application {
         AnchorPane.setBottomAnchor(hBox, 150.);
 
         ArrayList<Button> buttons = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 12; i++) {
             Button button = new Button("Btn-" + i);
             button.setPrefWidth(60.);
             button.setPrefHeight(200.);
             buttons.add(button);
 
-            if (i % 2 != 0){
+            button.setOnAction(event -> {
+                Button source = (Button) event.getSource();
+                System.out.println(source.getText());
+            });
+
+            if (i % 2 != 0) {
                 HBox.setMargin(button, new Insets(100, 5, -1, 5));
-                button.setOpacity(0.5);
+                button.setOpacity(0.5);     // 设置透明度
             }
         }
         hBox.getChildren().addAll(buttons);
 
+        hBox.setSpacing(5.);    // 设置子节点间隔
+
+        /*
+        设置不被管理：
+        - 节点不可见，位置会被其他节点占用
+        - Tab切换时任会获得焦点
+        */
+        buttons.get(4).setManaged(false);
+        buttons.get(5).setManaged(false);
+
+        /*
+        设置不可见：
+        - 节点不可见，位置不会被占用
+        - 无法被点击
+        - Tab切换时不会获得焦点
+        */
+        buttons.get(2).setVisible(false);
+        buttons.get(7).setVisible(false);
 
 
         VBox vBox = new VBox();
-        vBox.setMinHeight(100.);
+        vBox.setMinHeight(100);
         vBox.setStyle(
                 RegionCssContanst.BACKGROUND_COLOR.setValue("#c0c0c0").toStr()
                         + RegionCssContanst.BORDER_WIDTH.setValue("1").toStr()
@@ -85,9 +107,9 @@ public class PaneDemo_2 extends Application {
         AnchorPane.setRightAnchor(vBox, 0.);
         AnchorPane.setBottomAnchor(vBox, 0.);
 
-
         root.setPadding(new Insets(5.));
         root.getChildren().addAll(hBox, vBox);
+
         Scene scene = new Scene(root, 800, 600);
         Stage stage = new Stage();
         stage.setScene(scene);
