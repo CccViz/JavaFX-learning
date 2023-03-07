@@ -5,7 +5,6 @@ import com.caoyuezhi.fx.example.button.ButtonExample1;
 import com.caoyuezhi.fx.example.button.MyButton;
 import com.caoyuezhi.fx.example.stage.StageExample1;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -78,7 +77,7 @@ public class PaneDemo_1 extends Application {
         mainStage = stage;
         stage.show();*/
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 450);
         Stage stage = primaryStage;
         stage.setScene(scene);
         stage.setTitle("JavaFX");
@@ -95,12 +94,14 @@ public class PaneDemo_1 extends Application {
                 source.setText(source.getText() + "*");
             else
                 source.setText("FLUSH");
-            System.out.printf("%s  %s  %s", source.getText(), root.getWidth(), root.getHeight());
+            System.out.printf("%s  %s  %s\n", source.getText(), root.getWidth(), root.getHeight());
 
             source.setLayoutX(root.getWidth() - source.getWidth());
             source.setLayoutY(root.getHeight() - source.getHeight());
         });
         root.getChildren().add(flush);
+        AnchorPane.setBottomAnchor(flush, 0.);
+        AnchorPane.setRightAnchor(flush, 0.);
     }
 
 
@@ -297,14 +298,25 @@ public class PaneDemo_1 extends Application {
         AnchorPane root = new AnchorPane();
         TilePane tilePane = new TilePane();
         root.getChildren().addAll(tilePane);
+        AnchorPane.setLeftAnchor(tilePane, 0.);
+        AnchorPane.setRightAnchor(tilePane, 0.);
+        tilePane.setStyle(
+                RegionCssContanst.BACKGROUND_COLOR.setValue("#66ccff").toStr()
+                        + RegionCssContanst.BORDER_WIDTH.setValue("2").toStr()
+                        + RegionCssContanst.BORDER_COLOR.setValue("black").toStr()
+        );
 
-        ArrayList<Button> buttons = new ArrayList<>(16);
-        for (int i = 0; i < 5; i++) {
-            Button button = ButtonExample1.simpleButton("button_" + i);
-            buttons.add(button);
-        }
-        tilePane.getChildren().addAll(buttons);
+        Button b1 = new Button("button_1");
+        Button b2 = new Button("button_2");
+        Button b3 = new Button("button_3");
+        Button b4 = new Button("button_4");
+        Button b5 = new Button("button_5");
+        Button b6 = new Button("button_6");
+        Button b7 = new Button("button_7");
+        Button b8 = new Button("button_8");
+        Button b9 = new Button("button_9");
 
+        tilePane.getChildren().addAll(b1, b2, b3, b4, b5, b6, b7, b8, b9);
 
         Stage stage = StageExample1.stageInit(new Stage());
         Scene scene = new Scene(root);
